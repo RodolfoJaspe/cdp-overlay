@@ -17,11 +17,6 @@
   animation-name: baby-slide;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  animation-play-state: paused;
-}
-
-.baby-slide-overlay.phase-dancing .baby-stage {
-  animation-play-state: running;
 }
 
 .baby-dancer {

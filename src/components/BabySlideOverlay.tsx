@@ -4,7 +4,6 @@ import './BabySlideOverlay.css'
 
 export default function BabySlideOverlay() {
   const { danceUntil, triggerDance } = useStore()
-  const [phase, setPhase] = useState<'idle' | 'dancing'>('idle')
   const [duration, setDuration] = useState(0)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -15,28 +14,32 @@ export default function BabySlideOverlay() {
   }, [triggerDance])
 
   useEffect(() => {
+    console.log('🎯 danceUntil changed:', danceUntil, 'current time:', Date.now())
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
     if (danceUntil <= Date.now()) {
-      setPhase('idle')
       setDuration(0)
       return
     }
 
     const dur = danceUntil - Date.now()
     setDuration(dur)
-    setPhase('dancing')
+    console.log('🚀 Starting dance, duration:', dur)
     timeoutRef.current = setTimeout(() => {
-      setPhase('idle')
+      console.log('⏹️ Dance ended')
       setDuration(0)
     }, dur)
   }, [danceUntil])
 
   const [headError, setHeadError] = useState(false)
 
+  const phase = danceUntil > Date.now() ? 'dancing' : 'idle'
+
+  console.log('🎬 Render phase:', phase, 'danceUntil:', danceUntil, 'duration:', duration)
+
   return (
     <div className={`baby-slide-overlay phase-${phase}`}>
-      <div className="baby-stage" style={{ animationDuration: `${duration}ms`, ['--duration' as string]: `${duration}ms` } as React.CSSProperties}>
+      <div className="baby-stage" key={danceUntil} style={{ animationDuration: `${duration}ms`, ['--duration' as string]: `${duration}ms` } as React.CSSProperties}>
         <div className="baby-dancer">
           <div className="head">
             {headError ? (

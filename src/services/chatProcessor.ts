@@ -10,7 +10,8 @@ interface ProcessedComment {
 export function processNewComment(comment: ProcessedComment) {
   const store = useStore.getState()
 
-  if (comment.text.toLowerCase().includes(store.danceTriggerWord.toLowerCase())) {
+  if (comment.text && comment.text.toLowerCase().includes(store.danceTriggerWord.toLowerCase())) {
+    console.log('🎵 Trigger word detected, triggering dance')
     store.triggerDance(4000)
   }
 }
