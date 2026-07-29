@@ -32,6 +32,7 @@ export default function BabySlideOverlay() {
   }, [danceUntil])
 
   const [headError, setHeadError] = useState(false)
+  const [bubbleError, setBubbleError] = useState(false)
 
   const phase = danceUntil > Date.now() ? 'dancing' : 'idle'
 
@@ -41,6 +42,17 @@ export default function BabySlideOverlay() {
     <div className={`baby-slide-overlay phase-${phase}`}>
       <div className="baby-stage" key={danceUntil} style={{ animationDuration: `${duration}ms`, ['--duration' as string]: `${duration}ms` } as React.CSSProperties}>
         <div className="baby-dancer">
+          <div className="message-bubble">
+            {bubbleError ? (
+              <div className="bubble-fallback" />
+            ) : (
+              <img
+                src="/uelta.png"
+                alt=""
+                onError={() => setBubbleError(true)}
+              />
+            )}
+          </div>
           <div className="head">
             {headError ? (
               <div className="head-fallback" />
