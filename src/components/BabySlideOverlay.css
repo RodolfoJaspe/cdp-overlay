@@ -1,0 +1,203 @@
+.baby-slide-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.baby-stage {
+  position: absolute;
+  right: -50vh;
+  bottom: 0;
+  width: 50vh;
+  height: 95vh;
+  animation-name: baby-slide;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.baby-slide-overlay.phase-dancing .baby-stage {
+  animation-play-state: running;
+}
+
+.baby-dancer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.head {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  z-index: 2;
+  height: 24%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+  animation-name: head-shift;
+  animation-duration: var(--duration);
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.baby-slide-overlay.phase-dancing .head {
+  animation-play-state: running;
+}
+
+.head img,
+.head-fallback {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: head-tilt 0.5s infinite ease-in-out alternate;
+}
+
+.head-fallback {
+  aspect-ratio: 1 / 1;
+  background: #ffd166;
+}
+
+.body-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  animation-name: body-flip;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.baby-slide-overlay.phase-dancing .body-img {
+  animation-play-state: running;
+}
+
+.body {
+  position: relative;
+  height: 28%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.torso {
+  width: 65%;
+  height: 100%;
+  background: #000000;
+  border-radius: 50% 50% 45% 45% / 40% 40% 60% 60%;
+}
+
+.arm {
+  position: absolute;
+  top: 15%;
+  width: 20%;
+  height: 55%;
+  background: #000000;
+  border-radius: 9999px;
+  transform-origin: top center;
+}
+
+.arm-left {
+  left: 5%;
+  transform: rotate(35deg);
+}
+
+.arm-right {
+  right: 5%;
+  transform: rotate(-35deg);
+}
+
+.legs {
+  height: 22%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  gap: 8%;
+}
+
+.leg {
+  width: 25%;
+  height: 100%;
+  background: #000000;
+  border-radius: 9999px;
+  transform-origin: top center;
+}
+
+.leg-left {
+  transform: rotate(-8deg);
+}
+
+.leg-right {
+  transform: rotate(8deg);
+}
+
+@keyframes baby-slide {
+  0% {
+    right: -50vh;
+  }
+  40% {
+    right: 5vh;
+  }
+  60% {
+    right: 5vh;
+  }
+  100% {
+    right: -50vh;
+  }
+}
+
+@keyframes body-flip {
+  0% {
+    transform: scaleX(1);
+  }
+  49.99% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+  100% {
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes head-tilt {
+  0% {
+    transform: rotate(-12deg);
+  }
+  100% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes head-shift {
+  0% {
+    left: 60%;
+  }
+  50% {
+    left: 60%;
+  }
+  50.01% {
+    left: 45%;
+  }
+  100% {
+    left: 45%;
+  }
+}
