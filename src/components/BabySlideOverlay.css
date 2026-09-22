@@ -30,12 +30,19 @@
   top: 35%;
   left: 30%;
   z-index: 3;
-  height: 8%;
+  height: 5%;
   width: auto;
-  max-width: 15%;
-  object-fit: contain;
+  max-width: 10%;
   display: block;
   transform: translateX(-50%);
+}
+
+.message-bubble img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .head {
