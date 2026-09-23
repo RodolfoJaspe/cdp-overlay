@@ -30,9 +30,9 @@
   top: 35%;
   left: 30%;
   z-index: 3;
-  height: 5%;
+  height: 7%;
   width: auto;
-  max-width: 10%;
+  max-width: 13%;
   display: block;
   transform: translateX(-50%);
 }

@@ -9,6 +9,26 @@ export interface YouTubeChatMessage {
   publishedAt: string
 }
 
+export function extractVideoId(input: string): string {
+  const trimmed = input.trim()
+  if (/^[\w-]{11}$/.test(trimmed)) return trimmed
+
+  try {
+    const url = new URL(trimmed)
+    if (url.hostname === 'youtu.be') {
+      return url.pathname.slice(1).split('/')[0]
+    }
+    const v = url.searchParams.get('v')
+    if (v) return v
+    const match = url.pathname.match(/^\/(live|embed|shorts|v)\/([\w-]{11})/)
+    if (match) return match[2]
+  } catch {
+    // not a URL
+  }
+
+  return trimmed
+}
+
 export async function fetchLiveChatId(videoId: string, apiKey: string): Promise<string | null> {
   try {
     const response = await axios.get(`${YOUTUBE_API_BASE}/videos`, {

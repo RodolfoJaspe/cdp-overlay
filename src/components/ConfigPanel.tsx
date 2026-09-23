@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useStore } from '../store/useStore'
+import { extractVideoId } from '../utils/youtubeApi'
 import './ConfigPanel.css'
 
 export default function ConfigPanel() {
@@ -13,7 +14,7 @@ export default function ConfigPanel() {
   const [tempTriggerWord, setTempTriggerWord] = useState(danceTriggerWord)
 
   const handleSave = () => {
-    setLiveVideoId(tempVideoId)
+    setLiveVideoId(extractVideoId(tempVideoId))
     setYoutubeApiKey(tempApiKey)
     setDanceTriggerWord(tempTriggerWord)
     setIsOpen(false)
@@ -38,14 +39,14 @@ export default function ConfigPanel() {
 
       <div className="config-content">
         <div className="config-field">
-          <label>YouTube Video ID</label>
+          <label>YouTube Live Stream Link or Video ID</label>
           <input
             type="text"
             value={tempVideoId}
             onChange={(e) => setTempVideoId(e.target.value)}
-            placeholder="dQw4w9WgXcQ"
+            placeholder="https://youtu.be/dQw4w9WgXcQ"
           />
-          <small>From your live stream URL: youtube.com/watch?v=<strong>VIDEO_ID</strong></small>
+          <small>Paste the full share link or just the video ID — we'll extract it for you</small>
         </div>
 
         <div className="config-field">
