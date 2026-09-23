@@ -27,21 +27,15 @@
 
 .message-bubble {
   position: absolute;
-  top: 35%;
+  top: 42%;
   left: 30%;
   z-index: 3;
-  height: 7%;
-  width: auto;
-  max-width: 13%;
-  display: block;
   transform: translateX(-50%);
 }
 
 .message-bubble img {
-  height: 100%;
+  height: 20vh;
   width: auto;
-  max-width: 100%;
-  object-fit: contain;
   display: block;
 }
 
